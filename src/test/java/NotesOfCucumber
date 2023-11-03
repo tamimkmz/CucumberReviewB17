@@ -1,0 +1,117 @@
+Steps to create Framework:
+Add the dependencies to POM.xml
+Reload project
+Delete main folder
+Add directory recourses under TEST folder
+Create config and features directories under resources
+Under config create config.properties file (used for key value pair important info(url/browser/etc))
+Under feature folder create Login.feature file (u can name is differently)
+Add steps to your feature file (
+Feature: Login Feature
+
+  Scenario: user enters correct credentials and is able to login
+    Given  user navigates to the website
+    When user enters the credentials
+    And user clicks on login button
+    Then user is successfully logged in
+)
+Under Java create utils, steps and runners directories
+Under utils create CommonMethods ConfigReader and Constants classes
+Add common methods that we already have in a different project to CommonMethods class
+Same with Constants, add them from a different project to Constants class
+Also add config reader code from a different project to ConfigReader class
+
+
+Maven is a software application that runs on a computer or a server
+ and is used by software developers to manage the build and
+ packaging process of their projects.
+                                                               |        1...
+                                                               |        2..
+                                                               |        3..
+ Scenario Outline:
+ to pass multiple set of data in scenario
+ Scenario: test for invalid credential
+ When user enters the incorrect credentials
+ Then clicks login
+ Then the user is displayed with the error message
+
+ Example:
+ |  username            |password        |message
+ |  donal1              | ms             |invalid
+ |   tamoha1            | ms             |invalid
+ |    joe1              | ms             |invalid
+Scenario: adding multiple employees from data table
+And the user clicks on PIM option                           1. @When("user adds multiple employees from data table")
+Then the user goes on vacation      2. public void user_adds_multiple_employees_from_data_table(IO
+                                       .cucumber.datatable.Datatable datatable)
+And the user sleeps
+When user enters adds multiple employees from data table.           Only Once
+                                                            |   1. as list of maps.
+                                                            |   2. U iterate over it equals to the size of list.
+                                                            |   3. and perform the desired operations.
+
+Example:
+ |  username            |password        |message           | firstName | middleName |lastName|
+ |  donal1              | ms             |invalid           |  donal1              | ms             |duck
+ |  tamoha1             | ms             |invalid           |  tamoha1             | ms             |jimo
+ |  joe1                | ms             |invalid           |  joe1                | ms             |trump
+
+ Userstory:test with different credentials
+
+
+
+ regular way:
+ WEbElement abc =driver.findElement(By.xpath...
+
+ PageFactory Way:
+ @FindNy(locator="")
+ Public WebElement abc
+
+ constructor:
+ public constructor(){
+ PageFactory.initElements(driver,this);
+ }
+ The use of Page Factory in conjunction with Cucumber is an adoption of the Page Object Model (POM)
+  design pattern. The primary purpose of POM is to represent web pages as classes,
+   where each web element on the page is defined as an instance variable in that class.
+    Page Factory is a way to initialize the web elements and provides a set of annotations to help
+     in locating and operating on the web elements.
+
+ Here's why you might prefer using Page Factory with Cucumber over directly using driver.findElement:
+
+ Readability: By organizing web elements and related methods in a separate class (page object),
+  your test code becomes much cleaner and more readable. It abstracts the implementation details of the
+  page from the actual test cases.
+
+ Maintainability: If there's a change in the structure or design of the web page,
+  you only need to update the page object class instead of making changes in all the individual test cases.
+   This centralization greatly reduces the maintenance cost.
+
+ Reusability: Page objects can be reused across multiple test cases.
+  You don't have to redefine or locate a web element every time you need it in a different test.
+
+ Annotations: Page Factory provides annotations like @FindBy to make the declaration of web
+  elements more intuitive and clean. These annotations provide various strategies to locate elements,
+   making the element definition more human-readable.
+
+ Lazy Initialization: Page Factory initializes web elements when they are accessed,
+  not when they are declared. This means your tests may run faster since unnecessary
+   element initializations are avoided.
+ Method Chaining: Some implementations of Page Factory and the Page Object Model allow for
+  method chaining, which can result in more expressive and concise test scripts.
+
+ Consistency: Adopting a standardized design pattern across the team ensures everyone is on the same page,
+  making code reviews and collaborations more effective.
+
+ Enhanced Error Handling: With Page Factory and a well-implemented Page Object Model,
+ you can incorporate better error handling mechanisms. For instance, if an element is not found,
+  you can have more descriptive error messages pointing to which page and which element caused the issue.
+
+ While using driver.findElement directly might seem simpler for small projects or individual tests,
+  as your testing suite grows, direct element calls can make your tests harder to maintain.
+   Adopting Page Factory and the Page Object Model provides scalability, readability,
+    and maintainability advantages in the long run.
+
+what is the purpose of hooks in cucumber?
+    Hooks in Cucumber provide a flexible way to manage the test environment, handle common tasks,
+     and improve the maintainability and organization of your automated tests.
